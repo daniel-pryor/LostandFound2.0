@@ -5,9 +5,13 @@ import Footer from './Footer'
 import SearchBar from './SearchBar'
 import CustomFilter from './CustomFilter'
 import SearchManufacturer from './SearchManufacturer'
-import CarCard from './CarCard'
-import CarDetails from './CarDetails'
+import Post from './Post'
+import PostDetails from './PostDetails'
 import ShowMore from './ShowMore'
+import Form from './Form'
+import Feed from './Feed'
+import PostCard from './PostCard'
+import Profile from './Profile'
 
 export {
   Hero,
@@ -17,7 +21,11 @@ export {
   SearchBar,
   CustomFilter,
   SearchManufacturer,
-  CarCard,
-  CarDetails,
+  Post,
+  PostDetails,
   ShowMore,
+  Form,
+  Feed,
+  PostCard,
+  Profile,
 }

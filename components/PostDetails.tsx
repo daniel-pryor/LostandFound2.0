@@ -5,17 +5,16 @@ import { Fragment } from 'react'
 
 import { Dialog, Transition } from '@headlessui/react'
 
-import { CarProps } from '@/types'
+import { PostDetailsProps } from '@/types'
 
 import { generateCarImageUrl } from '@/utils'
 
-interface CarDetailsProps {
-  isOpen: boolean
-  closeModal: () => void
-  car: CarProps
-}
-
-const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
+const PostDetails = ({
+  isOpen,
+  closeModal,
+  post,
+  handleCategoryClick,
+}: PostDetailsProps) => {
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -56,7 +55,7 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                       className='object-contain'
                     />
                   </button>
-                  <div className='flex-1 flex flex-col gap-3'>
+                  {/* <div className='flex-1 flex flex-col gap-3'>
                     <div className='relative w-full h-40 bg-pattern bg-cover bg-center rounded-lg'>
                       <Image
                         src={generateCarImageUrl(car)}
@@ -95,27 +94,35 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
                         />
                       </div>
                     </div>
-                  </div>
+                  </div> */}
 
                   <div className='flex-1 flex flex-col gap-2'>
                     <h2 className='font-semibold text-xl capitalize'>
-                      {car.make} {car.model}
+                      {post.title} {post.type}
                     </h2>
 
-                    <div className='mt-3 flex flex-wrap gap-4'>
-                      {Object.entries(car).map(([key, value]) => (
-                        <div
-                          className='flex justify-between gap-5 w-full text-right'
-                          key={key}
+                    <div>
+                      <p>{post.location}</p>
+                      <p>{post.date}</p>
+                      <p>{post.description}</p>
+                      <p>{post.category}</p>
+                      {/* <div>
+                        <Image
+                          src={post.creator.image}
+                          alt='user_image'
+                          width={40}
+                          height={40}
+                          className='rounded-full object-contain'
+                        />
+                        <p
+                          onClick={() =>
+                            handleCategoryClick &&
+                            handleCategoryClick(post.category)
+                          }
                         >
-                          <h4 className='text-gray capitalize'>
-                            {key.split('_').join(' ')}
-                          </h4>
-                          <p className='text-black-100 font-semibold'>
-                            {value}
-                          </p>
-                        </div>
-                      ))}
+                          posted by {post.creator.username}
+                        </p>
+                      </div> */}
                     </div>
                   </div>
                 </Dialog.Panel>
@@ -128,4 +135,4 @@ const CarDetails = ({ isOpen, closeModal, car }: CarDetailsProps) => {
   )
 }
 
-export default CarDetails
+export default PostDetails

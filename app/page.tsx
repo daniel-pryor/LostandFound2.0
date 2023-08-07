@@ -1,4 +1,5 @@
-import { CustomFilter, Hero, SearchBar, CarCard, ShowMore } from '@/components'
+import { CustomFilter, Hero, SearchBar, ShowMore, Post } from '@/components'
+import { Feed } from '@/components'
 import { fuels, yearsOfProduction } from '@/constants'
 import { fetchCars } from '@/utils'
 import Image from 'next/image'
@@ -19,10 +20,11 @@ export default async function Home({ searchParams }) {
       <Hero />
       <div className='mt-12 padding-x padding-y max-width' id='discover'>
         <div className='home__text-container'>
-          <h1 className='text-4xl font-extrabold'>Car Catalogue</h1>
-          <p>Explore the cars you might like</p>
+          <h1 className='text-4xl font-extrabold'>All Posts</h1>
+          <p>Find your lost items</p>
         </div>
-        <div className='home__filters'>
+        <Feed />
+        {/* <div className='home__filters'>
           <SearchBar />
           <div className='home__filter-container'>
             <CustomFilter title='fuel' options={fuels} />
@@ -34,7 +36,7 @@ export default async function Home({ searchParams }) {
           <section>
             <div className='home__cars-wrapper'>
               {allCars?.map((car) => (
-                <CarCard car={car} />
+                <Post car={car} />
               ))}
             </div>
             <ShowMore
@@ -47,7 +49,7 @@ export default async function Home({ searchParams }) {
             <h2 className='text-black text-xl font-bold'>Oops, no results</h2>
             <p>{allCars?.message}</p>
           </div>
-        )}
+        )} */}
       </div>
     </main>
   )

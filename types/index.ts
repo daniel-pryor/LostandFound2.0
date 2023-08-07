@@ -3,31 +3,11 @@ import { MouseEventHandler } from 'react'
 export interface CustomButtonProps {
   title: string
   containerStyles?: string
-  handleClick?: MouseEventHandler<HTMLButtonElement>
+  handleClick?: () => void
   btnType?: 'button' | 'submit'
   textStyles?: string
   rightIcon?: string
   isDisabled?: boolean
-}
-
-export interface SearchManufacturerProps {
-  manufacturer: string
-  setManufacturer: (manufacturer: string) => void
-}
-
-export interface CarProps {
-  city_mpg: number
-  class: string
-  combination_mpg: number
-  cylinders: number
-  displacement: number
-  drive: string
-  fuel_type: string
-  highway_mpg: number
-  make: string
-  model: string
-  transmission: string
-  year: number
 }
 
 export interface FilterProps {
@@ -51,4 +31,59 @@ export interface CustomFilterProps {
 export interface ShowMoreProps {
   pageNumber: number
   isNext: boolean
+}
+
+export interface FormProps {
+  type: string
+  post: PostProps
+  setPost: (post: PostProps) => void
+  submitting: boolean
+  handleSubmit: (event: any) => void
+}
+
+export interface PostListProps {
+  data: PostProps[]
+  handleCategoryClick: () => void
+}
+
+export interface CreatorProps {
+  email: string
+  image: string
+  username: string
+  __v: number
+  _id: string
+}
+
+export interface PostCardProps {
+  post: PostProps
+  handleCategoryClick: () => void
+  handleEdit: () => void
+  handleDelete: () => void
+}
+
+export interface PostDetailsProps {
+  isOpen: boolean
+  closeModal: () => void
+  post: PostProps
+  handleCategoryClick?: (category: string) => void
+}
+
+export interface PostProps {
+  _id?: string
+  creator?: CreatorProps
+  type: string
+  title: string
+  location: string
+  date: string
+  description: string
+  datePosted?: number
+  category: string
+}
+
+export interface ProfileProps {
+  name: string
+  desc: string
+  data: PostProps[]
+  handleEdit: (post: object) => void
+  handleDelete: (post: object) => void
 }
