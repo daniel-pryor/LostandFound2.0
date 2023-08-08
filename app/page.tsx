@@ -1,5 +1,8 @@
+import { getAllPhotos } from '@/actions/uploadActions'
 import { CustomFilter, Hero, SearchBar, ShowMore, Post } from '@/components'
 import { Feed } from '@/components'
+import PhotoList from '@/components/PhotoList'
+import UploadFile from '@/components/UploadFile'
 import { fuels, yearsOfProduction } from '@/constants'
 import { fetchCars } from '@/utils'
 import Image from 'next/image'
@@ -15,8 +18,14 @@ export default async function Home({ searchParams }) {
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
+  const photos = await getAllPhotos()
+
   return (
     <main className='overflow-hidden'>
+      <UploadFile />
+
+      <h1>All photos</h1>
+      <PhotoList photos={photos || []} />
       <Hero />
       <div className='mt-12 padding-x padding-y max-width' id='discover'>
         <div className='home__text-container'>

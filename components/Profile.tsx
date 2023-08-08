@@ -8,7 +8,6 @@ const Profile = ({
   handleEdit,
   handleDelete,
 }: ProfileProps) => {
-  console.log(data)
   return (
     <section className='w-full'>
       <h1>{name} Profile</h1>
