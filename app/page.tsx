@@ -22,8 +22,6 @@ export default async function Home({ searchParams }) {
 
   return (
     <main className='overflow-hidden'>
-      <UploadFile />
-
       <h1>All photos</h1>
       <PhotoList photos={photos || []} />
       <Hero />

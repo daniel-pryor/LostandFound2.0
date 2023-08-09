@@ -52,8 +52,8 @@ const CreatePost = () => {
     <div className=''>
       <Form
         type='Create'
-        post={post}
-        setPost={setPost}
+        // post={post}
+        // setPost={setPost}
         submitting={submitting}
         handleSubmit={createPost}
       />

@@ -35,8 +35,8 @@ export interface ShowMoreProps {
 
 export interface FormProps {
   type: string
-  post: PostProps
-  setPost: (post: PostProps) => void
+  // post: PostProps
+  // setPost: (post: PostProps) => void
   submitting: boolean
   handleSubmit: (event: any) => void
 }

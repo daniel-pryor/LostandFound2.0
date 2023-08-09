@@ -11,6 +11,7 @@ const PhotoList = ({ photos }: any) => {
     <div style={{ display: 'flex', gap: 10 }}>
       {photos.map((photo) => (
         <PhotoCard
+          post={photo}
           key={photo?.public_id}
           url={photo?.secure_url}
           onClick={() => handleDeletePhoto(photo?.public_id)}

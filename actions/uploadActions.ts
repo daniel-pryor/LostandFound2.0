@@ -51,7 +51,17 @@ const delay = (delayTimes: number) => {
   return new Promise((resolve) => setTimeout(resolve, delayTimes))
 }
 
-export async function uploadPhoto(formData: any) {
+export async function uploadPhoto(formData: any, data: any) {
+  const {
+    userId,
+    type,
+    title,
+    location,
+    date,
+    description,
+    datePosted,
+    category,
+  } = data
   try {
     // save photo files to temp folder
     const newFiles = await savePhotosToLocal(formData)
@@ -64,10 +74,19 @@ export async function uploadPhoto(formData: any) {
       const newPhoto = new Photo({
         public_id: photo.public_id,
         secure_url: photo.secure_url,
+        creator: userId,
+        type,
+        title,
+        location,
+        date,
+        description,
+        datePosted,
+        category,
       })
       return newPhoto
     })
 
+    console.log(newPhotos)
     await Photo.insertMany(newPhotos)
     revalidatePath('/')
     return { msg: 'Upload Success!' }
@@ -88,11 +107,19 @@ export async function getAllPhotos() {
 
     // From MongoDB
     const photos = await Photo.find().sort('-createdAt')
-
     const resources = photos.map((photo) => ({
       ...photo._doc,
       _id: photo._id.toString(),
+      creator: photo.creator,
+      type: photo.type,
+      title: photo.title,
+      location: photo.location,
+      date: photo.date,
+      description: photo.description,
+      datePosted: photo.datePosted,
+      category: photo.category,
     }))
+    console.log(resources)
 
     return resources
   } catch (error) {

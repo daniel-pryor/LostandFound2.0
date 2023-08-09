@@ -37,7 +37,13 @@ const UploadFile = () => {
       formData.append('files', file)
     })
 
-    const res = await uploadPhoto(formData)
+    const data = {
+      name: 'bottle',
+      type: 'found',
+    }
+
+    const res = await uploadPhoto(formData, data)
+
     // if (res?.msg) alert(`Success: ${res?.msg}`) // await delay(2000)
     if (res?.errMsg) alert(`Error: ${res?.errMsg}`)
     setFiles([])
