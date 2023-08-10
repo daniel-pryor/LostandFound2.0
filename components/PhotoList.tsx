@@ -7,6 +7,7 @@ const PhotoList = ({ photos }: any) => {
   async function handleDeletePhoto(public_id: string) {
     await deletePhoto(public_id)
   }
+
   return (
     <div style={{ display: 'flex', gap: 10 }}>
       {photos.map((photo) => (

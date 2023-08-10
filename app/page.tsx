@@ -18,12 +18,8 @@ export default async function Home({ searchParams }) {
 
   const isDataEmpty = !Array.isArray(allCars) || allCars.length < 1 || !allCars
 
-  const photos = await getAllPhotos()
-
   return (
     <main className='overflow-hidden'>
-      <h1>All photos</h1>
-      <PhotoList photos={photos || []} />
       <Hero />
       <div className='mt-12 padding-x padding-y max-width' id='discover'>
         <div className='home__text-container'>

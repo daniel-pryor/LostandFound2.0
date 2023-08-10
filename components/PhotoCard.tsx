@@ -4,7 +4,6 @@ import React, { useTransition } from 'react'
 const PhotoCard = ({ url, onClick, post }: any) => {
   const [isPending, startTransition] = useTransition()
 
-  console.log(post)
   return (
     <div>
       {post && (

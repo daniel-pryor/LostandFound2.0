@@ -18,6 +18,7 @@ const Profile = ({
             key={post._id}
             handleCategoryClick={() => {}}
             post={post}
+            url={post?.secure_url}
             handleDelete={() => handleDelete && handleDelete(post)}
             handleEdit={() => handleEdit && handleEdit(post)}
           />

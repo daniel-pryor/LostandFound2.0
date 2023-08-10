@@ -17,9 +17,14 @@ const CreatePost = () => {
     date: '',
     description: '',
     category: '',
+    public_id: '',
+    secure_url: '',
   })
 
-  const createPost = async (e: React.FormEvent<HTMLInputElement>) => {
+  const createPost = async (
+    e: React.FormEvent<HTMLInputElement>,
+    photoData: any
+  ) => {
     e.preventDefault()
     setSubmitting(true)
 
@@ -35,6 +40,8 @@ const CreatePost = () => {
           datePosted: Date.now(),
           category: post.category,
           userId: session?.user?.id,
+          public_id: photoData[0].public_id,
+          secure_url: photoData[0].secure_url,
         }),
       })
 
@@ -52,8 +59,8 @@ const CreatePost = () => {
     <div className=''>
       <Form
         type='Create'
-        // post={post}
-        // setPost={setPost}
+        post={post}
+        setPost={setPost}
         submitting={submitting}
         handleSubmit={createPost}
       />

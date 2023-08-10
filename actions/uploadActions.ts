@@ -51,47 +51,26 @@ const delay = (delayTimes: number) => {
   return new Promise((resolve) => setTimeout(resolve, delayTimes))
 }
 
-export async function uploadPhoto(formData: any, data: any) {
-  const {
-    userId,
-    type,
-    title,
-    location,
-    date,
-    description,
-    datePosted,
-    category,
-  } = data
+export async function uploadPhoto(formData: any) {
   try {
     // save photo files to temp folder
     const newFiles = await savePhotosToLocal(formData)
     // Upload to cloud after saving the photo file to the temp folder
-    const photos = await uploadPhotosToCloudinary(newFiles)
+    const photo = await uploadPhotosToCloudinary(newFiles)
     // Delete photo files in temp folder after successful upload
     newFiles.map((file) => fs.unlink(file.filepath))
     // Save photo files to mongoDB
-    const newPhotos = photos.map((photo) => {
-      const newPhoto = new Photo({
-        public_id: photo.public_id,
-        secure_url: photo.secure_url,
-        creator: userId,
-        type,
-        title,
-        location,
-        date,
-        description,
-        datePosted,
-        category,
-      })
-      return newPhoto
-    })
+    // const newPhotos = photos.map((photo) => {
+    //   const newPhoto = new Photo({
+    //     public_id: photo.public_id,
+    //     secure_url: photo.secure_url,
+    //   })
+    //   return newPhoto
+    // })
 
-    console.log(newPhotos)
-    await Photo.insertMany(newPhotos)
-    revalidatePath('/')
-    return { msg: 'Upload Success!' }
+    return photo
   } catch (error) {
-    return { errMsg: error.message }
+    console.log(error)
   }
 }
 
@@ -119,7 +98,6 @@ export async function getAllPhotos() {
       datePosted: photo.datePosted,
       category: photo.category,
     }))
-    console.log(resources)
 
     return resources
   } catch (error) {
@@ -129,12 +107,7 @@ export async function getAllPhotos() {
 
 export async function deletePhoto(public_id: any) {
   try {
-    await Promise.all([
-      Photo.findOneAndDelete(
-        { public_id },
-        cloudinary.uploader.destroy(public_id)
-      ),
-    ])
+    await cloudinary.uploader.destroy(public_id)
 
     revalidatePath('/')
     return { msg: 'Delete Success!' }

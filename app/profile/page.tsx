@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { Profile } from '@/components'
+import { deletePhoto } from '@/actions/uploadActions'
 
 const MyProfile = () => {
   const { data: session } = useSession()
@@ -24,6 +25,7 @@ const MyProfile = () => {
         await fetch(`/api/post/${post._id.toString()}`, {
           method: 'DELETE',
         })
+        deletePhoto(post.public_id)
 
         const filteredPosts = posts.filter((p: any) => p._id !== post._id)
 

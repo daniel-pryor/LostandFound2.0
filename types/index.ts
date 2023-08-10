@@ -35,10 +35,10 @@ export interface ShowMoreProps {
 
 export interface FormProps {
   type: string
-  // post: PostProps
-  // setPost: (post: PostProps) => void
+  post: PostProps
+  setPost: (post: PostProps) => void
   submitting: boolean
-  handleSubmit: (event: any) => void
+  handleSubmit: (event: any, photoData: any) => void
 }
 
 export interface PostListProps {
@@ -56,6 +56,7 @@ export interface CreatorProps {
 
 export interface PostCardProps {
   post: PostProps
+  url: string
   handleCategoryClick: () => void
   handleEdit: () => void
   handleDelete: () => void
@@ -78,6 +79,8 @@ export interface PostProps {
   description: string
   datePosted?: number
   category: string
+  public_id: string
+  secure_url: string
 }
 
 export interface ProfileProps {

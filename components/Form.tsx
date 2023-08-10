@@ -10,22 +10,13 @@ import ButtonSubmit from './ButtonSubmit'
 import { revalidate, uploadPhoto } from '@/actions/uploadActions'
 import UploadFile from './UploadFile'
 import { useSession } from 'next-auth/react'
-const Form = ({ type, submitting, handleSubmit }: FormProps) => {
+import Image from 'next/image'
+const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
   const { data: session } = useSession()
   const router = useRouter()
 
   const formRef = useRef()
   const [files, setFiles] = useState([])
-  const [post, setPost] = useState({
-    type: '',
-    title: '',
-    location: '',
-    date: '',
-    description: '',
-    category: '',
-    userId: session?.user?.id,
-    datePosted: Date.now(),
-  })
 
   async function handleInputFiles(e: any) {
     const files = e.target.files
@@ -48,7 +39,8 @@ const Form = ({ type, submitting, handleSubmit }: FormProps) => {
 
   async function handleUpload(e: any) {
     e.preventDefault()
-    if (!files.length) return alert('No image files are selected')
+    if (!post.secure_url && !files.length)
+      return alert('No image files are selected')
 
     const formData = new FormData()
 
@@ -56,12 +48,13 @@ const Form = ({ type, submitting, handleSubmit }: FormProps) => {
       formData.append('files', file)
     })
 
-    // const data = {
-    //   name: 'bottle',
-    //   type: 'found',
-    // }
-    console.log('post:', post)
-    const res = await uploadPhoto(formData, post)
+    const res = await uploadPhoto(formData)
+    handleSubmit(e, res)
+    // setPost({
+    //   ...post,
+    //   public_id: 'photo',
+    //   secure_url: 'photo',
+    // })
 
     // if (res?.msg) alert(`Success: ${res?.msg}`) // await delay(2000)
     if (res?.errMsg) alert(`Error: ${res?.errMsg}`)
@@ -70,7 +63,6 @@ const Form = ({ type, submitting, handleSubmit }: FormProps) => {
 
     // delay about 2s to update cloudinary database
     // the revalidatePath => call getAllPhotos()
-    router.push('/')
   }
 
   return (
@@ -79,25 +71,35 @@ const Form = ({ type, submitting, handleSubmit }: FormProps) => {
       <p className=''>{type} your post</p>
       {/* <UploadFile /> */}
       <form onSubmit={handleUpload} className='flex flex-col gap-5 m-10'>
-        <div style={{ background: '#ddd', minHeight: 200 }}>
-          <input type='file' accept='image/*' onChange={handleInputFiles} />
-
-          <h5 style={{ color: 'red' }}>
-            {' '}
-            (*) Only accepts files less than 1mb. Up to 3 photo files{' '}
-          </h5>
-          {/* Preview Images */}
-
-          {files.map((file, index) => (
-            <PhotoCard
-              key={index}
-              url={URL.createObjectURL(file)}
-              onClick={() => handleDeleteFile(index)}
+        {post.secure_url ? (
+          <div>
+            <Image
+              src={post.secure_url}
+              alt='image'
+              width={100}
+              height={60}
+              priority
             />
-          ))}
-        </div>
+          </div>
+        ) : (
+          <div style={{ background: '#ddd', minHeight: 200 }}>
+            <input type='file' accept='image/*' onChange={handleInputFiles} />
 
-        <ButtonSubmit value={'Upload to Cloudinary'} />
+            <h5 style={{ color: 'red' }}>
+              {' '}
+              (*) Only accepts files less than 1mb. Up to 3 photo files{' '}
+            </h5>
+            {/* Preview Images */}
+
+            {files.map((file, index) => (
+              <PhotoCard
+                url={URL.createObjectURL(file)}
+                onClick={() => handleDeleteFile(index)}
+              />
+            ))}
+          </div>
+        )}
+
         <label>
           <span className=''>Item type</span>
 
