@@ -79,12 +79,12 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
                         {post.type}
                       </h2>
                     </div>
-                    <div className='w-[380px] h-[380px] bg-slate-100 rounded-sm drop-shadow-sm  my-2 items-center'>
+                    <div className='w-[350px] h-[350px] bg-slate-100 rounded-sm drop-shadow-sm  my-2 items-center relative'>
                       {url && (
                         <Image
                           src={url}
                           alt='image'
-                          fill
+                          layout='fill'
                           objectFit='cover'
                           objectPosition='center'
                           className='mx-auto'
