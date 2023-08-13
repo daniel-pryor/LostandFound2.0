@@ -6,15 +6,10 @@ import Link from 'next/link'
 import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import PhotoCard from './PhotoCard'
-import ButtonSubmit from './ButtonSubmit'
-import { revalidate, uploadPhoto } from '@/actions/uploadActions'
-import UploadFile from './UploadFile'
+import { uploadPhoto } from '@/actions/uploadActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
-  const { data: session } = useSession()
-  const router = useRouter()
-
   const formRef = useRef()
   const [files, setFiles] = useState([])
 
@@ -27,7 +22,7 @@ const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
         return file
       }
     })
-    setFiles((prev) => [...newFiles, ...prev])
+    setFiles((prev) => [...prev, ...newFiles])
     formRef?.current?.reset()
   }
 
@@ -50,19 +45,10 @@ const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
 
     const res = await uploadPhoto(formData)
     handleSubmit(e, res)
-    // setPost({
-    //   ...post,
-    //   public_id: 'photo',
-    //   secure_url: 'photo',
-    // })
 
-    // if (res?.msg) alert(`Success: ${res?.msg}`) // await delay(2000)
     if (res?.errMsg) alert(`Error: ${res?.errMsg}`)
     setFiles([])
     formRef?.current?.reset()
-
-    // delay about 2s to update cloudinary database
-    // the revalidatePath => call getAllPhotos()
   }
 
   return (
