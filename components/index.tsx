@@ -5,7 +5,6 @@ import Footer from './Footer'
 import SearchBar from './SearchBar'
 import CustomFilter from './CustomFilter'
 import SearchManufacturer from './SearchManufacturer'
-import Post from './Post'
 import PostDetails from './PostDetails'
 import ShowMore from './ShowMore'
 import Form from './Form'
@@ -21,7 +20,6 @@ export {
   SearchBar,
   CustomFilter,
   SearchManufacturer,
-  Post,
   PostDetails,
   ShowMore,
   Form,

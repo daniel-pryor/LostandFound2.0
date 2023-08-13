@@ -17,7 +17,6 @@ const PostCard = ({
   const { data: session } = useSession()
   const pathName = usePathname()
   const [isOpen, setIsOpen] = useState(false)
-  console.log(post.secure_url)
 
   return (
     <div>

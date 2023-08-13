@@ -7,7 +7,6 @@ import os, { tmpdir } from 'os'
 
 import { v2 as cloudinary } from 'cloudinary'
 import { revalidatePath } from 'next/cache'
-import Photo from '@/models/photos'
 
 cloudinary.config({
   cloud_name: process.env.CLOUD_NAME,
@@ -59,49 +58,10 @@ export async function uploadPhoto(formData: any) {
     const photo = await uploadPhotosToCloudinary(newFiles)
     // Delete photo files in temp folder after successful upload
     newFiles.map((file) => fs.unlink(file.filepath))
-    // Save photo files to mongoDB
-    // const newPhotos = photos.map((photo) => {
-    //   const newPhoto = new Photo({
-    //     public_id: photo.public_id,
-    //     secure_url: photo.secure_url,
-    //   })
-    //   return newPhoto
-    // })
 
     return photo
   } catch (error) {
     console.log(error)
-  }
-}
-
-export async function getAllPhotos() {
-  try {
-    // From Cloudinary database
-
-    // const { resources } = await cloudinary.search
-    //   .expression('folder:lostandfound_upload/*')
-    //   .sort_by('created_at', 'desc')
-    //   .max_results(500)
-    //   .execute()
-
-    // From MongoDB
-    const photos = await Photo.find().sort('-createdAt')
-    const resources = photos.map((photo) => ({
-      ...photo._doc,
-      _id: photo._id.toString(),
-      creator: photo.creator,
-      type: photo.type,
-      title: photo.title,
-      location: photo.location,
-      date: photo.date,
-      description: photo.description,
-      datePosted: photo.datePosted,
-      category: photo.category,
-    }))
-
-    return resources
-  } catch (error) {
-    return { errMsg: error.message }
   }
 }
 
