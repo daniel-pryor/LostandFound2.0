@@ -10,17 +10,22 @@ import { CustomButton, PostDetails } from '.'
 const PostCard = ({
   handleCategoryClick,
   post,
+  url,
   handleEdit,
   handleDelete,
 }: PostCardProps) => {
   const { data: session } = useSession()
   const pathName = usePathname()
   const [isOpen, setIsOpen] = useState(false)
+  console.log(post.secure_url)
 
   return (
     <div>
       <div>
-        <p>{post.type}</p>
+        {url && (
+          <Image src={url} alt='image' width={100} height={60} priority />
+        )}
+        <p>{post.secure_url}</p>
         <h2>{post.title}</h2>
       </div>
       <CustomButton

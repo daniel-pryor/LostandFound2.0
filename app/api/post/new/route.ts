@@ -11,6 +11,8 @@ export const POST = async (req: any) => {
     description,
     datePosted,
     category,
+    public_id,
+    secure_url,
   } = await req.json()
   try {
     await connectToDB()
@@ -23,6 +25,8 @@ export const POST = async (req: any) => {
       description,
       datePosted,
       category,
+      public_id,
+      secure_url,
     })
     await newPost.save()
 

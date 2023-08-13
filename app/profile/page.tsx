@@ -5,6 +5,7 @@ import { useState, useEffect } from 'react'
 import { useRouter } from 'next/navigation'
 
 import { Profile } from '@/components'
+import { deletePhoto } from '@/actions/uploadActions'
 
 const MyProfile = () => {
   const { data: session } = useSession()
@@ -13,10 +14,27 @@ const MyProfile = () => {
   const [posts, setPosts] = useState([])
 
   const handleEdit = (post: any) => {
-    router.push(`/update-prompt?id=${post._id}`)
+    router.push(`/update-post?id=${post._id}`)
   }
 
-  const handleDelete = () => {}
+  const handleDelete = async (post: any) => {
+    const hasConfirmed = confirm('Are you sure you want to delete this post?')
+
+    if (hasConfirmed) {
+      try {
+        await fetch(`/api/post/${post._id.toString()}`, {
+          method: 'DELETE',
+        })
+        deletePhoto(post.public_id)
+
+        const filteredPosts = posts.filter((p: any) => p._id !== post._id)
+
+        setPosts(filteredPosts)
+      } catch (error) {
+        console.log(error)
+      }
+    }
+  }
 
   useEffect(() => {
     const fetchPosts = async () => {

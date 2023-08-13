@@ -8,7 +8,6 @@ const Profile = ({
   handleEdit,
   handleDelete,
 }: ProfileProps) => {
-  console.log(data)
   return (
     <section className='w-full'>
       <h1>{name} Profile</h1>
@@ -19,6 +18,7 @@ const Profile = ({
             key={post._id}
             handleCategoryClick={() => {}}
             post={post}
+            url={post?.secure_url}
             handleDelete={() => handleDelete && handleDelete(post)}
             handleEdit={() => handleEdit && handleEdit(post)}
           />
