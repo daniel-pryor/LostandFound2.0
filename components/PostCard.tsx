@@ -29,12 +29,12 @@ const PostCard = ({
           {post.type}
         </h2>
       </div>
-      <div className='w-[350px] h-[350px] bg-slate-100 rounded-sm drop-shadow-sm p-5 my-2'>
+      <div className='w-[350px] h-[350px] bg-slate-100 rounded-sm drop-shadow-sm p-5 my-2 relative'>
         {url && (
           <Image
             src={url}
             alt='image'
-            fill
+            layout='fill'
             objectFit='cover'
             objectPosition='center'
             className='mx-auto'
