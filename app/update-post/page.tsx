@@ -18,6 +18,8 @@ const EditPost = () => {
     date: '',
     description: '',
     category: '',
+    public_id: '',
+    secure_url: '',
   })
 
   useEffect(() => {
@@ -32,13 +34,18 @@ const EditPost = () => {
         date: data.date,
         description: data.description,
         category: data.category,
+        public_id: data.public_id,
+        secure_url: data.secure_url,
       })
     }
 
     if (postId) getPostDetails()
   }, [postId])
 
-  const updatePost = async (e: React.FormEvent<HTMLInputElement>) => {
+  const updatePost = async (
+    e: React.FormEvent<HTMLInputElement>,
+    photoData: any
+  ) => {
     e.preventDefault()
     setSubmitting(true)
 

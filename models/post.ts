@@ -33,6 +33,8 @@ const PostSchema = new Schema({
     type: String,
     required: [true, 'Category is required'],
   },
+  public_id: String,
+  secure_url: String,
 })
 
 const Post = models.Post || model('Post', PostSchema)

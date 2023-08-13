@@ -1,5 +1,8 @@
+import { getAllPhotos } from '@/actions/uploadActions'
 import { CustomFilter, Hero, SearchBar, ShowMore, Post } from '@/components'
 import { Feed } from '@/components'
+import PhotoList from '@/components/PhotoList'
+import UploadFile from '@/components/UploadFile'
 import { fuels, yearsOfProduction } from '@/constants'
 import { fetchCars } from '@/utils'
 import Image from 'next/image'
