@@ -19,16 +19,42 @@ const PostCard = ({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div>
-      <div>
-        {url && (
-          <Image src={url} alt='image' width={100} height={60} priority />
-        )}
-        <p>{post.secure_url}</p>
-        <h2>{post.title}</h2>
+    <div className='flex flex-col p-5 bg-slate-50 rounded-sm drop-shadow-lg'>
+      <div className='flex justify-between'>
+        <h2
+          className={`${
+            post.type === 'Lost' ? 'text-red-400' : 'text-green-700'
+          } text-2xl font-bold`}
+        >
+          {post.type}
+        </h2>
       </div>
+      <div className='w-[350px] h-[350px] bg-slate-100 rounded-sm drop-shadow-sm p-5 my-2'>
+        {url && (
+          <Image
+            src={url}
+            alt='image'
+            fill
+            objectFit='cover'
+            objectPosition='center'
+            className='mx-auto'
+          />
+        )}
+      </div>
+      <h3 className='text-2xl'>{post.title}</h3>
+      <div className='flex flex-wrap justify-between gap-5 my-3'>
+        <p>
+          <span className='text-gray-400'>Location: </span>
+          {post.location}
+        </p>
+        <p>
+          <span className='text-gray-400'>Date {post.type}: </span>
+          {post.date}
+        </p>
+      </div>
+
       <CustomButton
-        title='View More'
+        title='More Details'
         containerStyles='w-full py-[16px] rounded-full bg-primary-purple'
         textStyles='text-white text-[14px] leading-[17px] font-bold'
         rightIcon='/right-arrow.svg'
@@ -38,6 +64,7 @@ const PostCard = ({
         isOpen={isOpen}
         closeModal={() => setIsOpen(false)}
         post={post}
+        url={url}
         handleCategoryClick={handleCategoryClick}
       />
       {session?.user?.id === post?.creator?._id && pathName === '/profile' && (
@@ -50,6 +77,12 @@ const PostCard = ({
           </p>
         </div>
       )}
+      <p
+        onClick={() => handleCategoryClick(post.category)}
+        className='underline text-center cursor-pointer mt-4'
+      >
+        See more posts in category {post.category}
+      </p>
     </div>
   )
 }

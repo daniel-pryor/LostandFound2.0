@@ -10,6 +10,11 @@ export interface CustomButtonProps {
   isDisabled?: boolean
 }
 
+export interface SearchCategoryProps {
+  category: string
+  setCategory: (category: string) => void
+}
+
 export interface FilterProps {
   manufacturer: string
   year: number
@@ -43,7 +48,7 @@ export interface FormProps {
 
 export interface PostListProps {
   data: PostProps[]
-  handleCategoryClick: () => void
+  handleCategoryClick: (category: string) => void
 }
 
 export interface CreatorProps {
@@ -57,7 +62,7 @@ export interface CreatorProps {
 export interface PostCardProps {
   post: PostProps
   url: string
-  handleCategoryClick: () => void
+  handleCategoryClick: (category: string) => void
   handleEdit: () => void
   handleDelete: () => void
 }
@@ -67,6 +72,7 @@ export interface PostDetailsProps {
   closeModal: () => void
   post: PostProps
   handleCategoryClick?: (category: string) => void
+  url: string
 }
 
 export interface PostProps {
