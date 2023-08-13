@@ -4,11 +4,17 @@ import Image from 'next/image'
 import { CustomButton } from '.'
 
 const Hero = () => {
-  const handleScroll = () => {}
+  const handleScroll = () => {
+    document?.getElementById('posts')?.scrollIntoView({
+      behavior: 'smooth',
+    })
+  }
   return (
     <div className='hero'>
       <div className='flex-1 pt-36 padding-x'>
-        <h1 className='hero__title'>Welcome to Lost & Found</h1>
+        <h1 className='hero__title text-primary-purple'>
+          Welcome to Lost & Found
+        </h1>
         <p className='hero__subtitle'>
           Where Lost Belongings Find Their Way Home.
         </p>

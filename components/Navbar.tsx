@@ -27,13 +27,16 @@ const Navbar = () => {
         <div className='sm:flex hidden'>
           {session?.user ? (
             <div className='flex gap-3 md:gap-5'>
-              <Link href='/create-post' className=''>
+              <Link
+                href='/create-post'
+                className='rounded-full border border-primary-purple bg-primary-purple py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center'
+              >
                 Create Post
               </Link>
               <CustomButton
                 title={'Sign Out'}
                 btnType='button'
-                containerStyles='text-primary-purple rounded-full bg-white min-w[130px]'
+                containerStyles='text-primary-purple'
                 handleClick={signOut}
               />
               <Link href='/profile'>
@@ -50,7 +53,7 @@ const Navbar = () => {
             <CustomButton
               title={'Sign In'}
               btnType='button'
-              containerStyles='text-primary-blue rounded-full bg-white min-w[130px]'
+              containerStyles='text-white rounded-full bg-primary-purple min-w[130px]'
               handleClick={signIn}
             />
           )}
@@ -73,28 +76,27 @@ const Navbar = () => {
                 <div className='dropdown'>
                   <Link
                     href='/profile'
-                    className=''
+                    className='text-primary-purple  px-5'
                     onClick={() => setToggleDropDown(false)}
                   >
                     My Profile
                   </Link>
-                  <Link
-                    href='/create-post'
-                    className=''
-                    onClick={() => setToggleDropDown(false)}
-                  >
-                    Create Post
-                  </Link>
-
                   <CustomButton
                     title={'Sign Out'}
                     btnType='button'
-                    containerStyles='text-primary-blue rounded-full bg-white min-w[130px]'
+                    containerStyles='text-primary-purple rounded-full bg-white min-w[130px]'
                     handleClick={() => {
                       signOut()
                       setToggleDropDown(false)
                     }}
                   />
+                  <Link
+                    href='/create-post'
+                    className='rounded-full border border-primary-purple bg-primary-purple py-1.5 px-5 text-white transition-all hover:bg-white hover:text-primary-purple text-center text-sm  flex items-center justify-center'
+                    onClick={() => setToggleDropDown(false)}
+                  >
+                    Create Post
+                  </Link>
                 </div>
               )}
             </div>
@@ -103,7 +105,7 @@ const Navbar = () => {
               <CustomButton
                 title={'Sign In'}
                 btnType='button'
-                containerStyles='text-primary-blue rounded-full bg-white min-w[130px]'
+                containerStyles='rounded-full border border-primary-purple bg-white py-1.5 px-5 text-primary-purple transition-all hover:bg-primary-purple hover:text-white text-center text-sm  flex items-center justify-center'
                 handleClick={signIn}
               />
             </>

@@ -2,17 +2,30 @@
 
 import Image from 'next/image'
 import { Fragment } from 'react'
+import { usePathname, useRouter } from 'next/navigation'
+import { useSession } from 'next-auth/react'
 
 import { Dialog, Transition } from '@headlessui/react'
 
 import { PostDetailsProps } from '@/types'
+import { convertTimestampToReadableDate } from '@/utils/functions'
 
-const PostDetails = ({
-  isOpen,
-  closeModal,
-  post,
-  handleCategoryClick,
-}: PostDetailsProps) => {
+const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
+  const router = useRouter()
+  const { data: session } = useSession()
+
+  const handleProfileClick = () => {
+    console.log(post)
+
+    if (post?.creator?._id === session?.user?.id) return router.push('/profile')
+
+    router.push(
+      `/profile/${post?.creator?._id}?name=${post?.creator?.username}`
+    )
+  }
+
+  const newDatePosted = convertTimestampToReadableDate(post.datePosted)
+
   return (
     <>
       <Transition appear show={isOpen} as={Fragment}>
@@ -54,17 +67,52 @@ const PostDetails = ({
                     />
                   </button>
 
-                  <div className='flex-1 flex flex-col gap-2'>
-                    <h2 className='font-semibold text-xl capitalize'>
-                      {post.title} {post.type}
-                    </h2>
-
-                    <div>
-                      <p>{post.location}</p>
-                      <p>{post.date}</p>
+                  <div className='flex flex-col p-4 items-center'>
+                    <div className='flex justify-between w-full '>
+                      <h2
+                        className={`${
+                          post.type === 'Lost'
+                            ? 'text-red-400'
+                            : 'text-green-700'
+                        } text-2xl font-bold`}
+                      >
+                        {post.type}
+                      </h2>
+                    </div>
+                    <div className='w-[380px] h-[380px] bg-slate-100 rounded-sm drop-shadow-sm  my-2 items-center'>
+                      {url && (
+                        <Image
+                          src={url}
+                          alt='image'
+                          fill
+                          objectFit='cover'
+                          objectPosition='center'
+                          className='mx-auto'
+                        />
+                      )}
+                    </div>
+                    <h2 className='text-2xl'>{post.title}</h2>
+                    <div className='flex flex-wrap justify-between w-full gap-5 my-3'>
+                      <p>
+                        <span className='text-gray-400'>Location: </span>
+                        {post.location}
+                      </p>
+                      <p>
+                        <span className='text-gray-400'>
+                          Date {post.type}:{' '}
+                        </span>
+                        {post.date}
+                      </p>
+                    </div>
+                    <div className='my-5'>
                       <p>{post.description}</p>
-                      <p>{post.category}</p>
-                      <div>
+                    </div>
+
+                    <div
+                      onClick={handleProfileClick}
+                      className='flex items-center  cursor-pointer justify-between w-full'
+                    >
+                      <div className='flex items-center gap-2'>
                         <Image
                           src={post.creator.image}
                           alt='user_image'
@@ -72,13 +120,14 @@ const PostDetails = ({
                           height={40}
                           className='rounded-full object-contain'
                         />
-                        <p
-                          onClick={() =>
-                            handleCategoryClick &&
-                            handleCategoryClick(post.category)
-                          }
-                        >
-                          posted by {post?.creator.username}
+                        <p>{post?.creator?.username}</p>
+                      </div>
+
+                      <div>
+                        {' '}
+                        <p>
+                          <span className='text-gray-400'>Posted:</span>{' '}
+                          {newDatePosted}
                         </p>
                       </div>
                     </div>
