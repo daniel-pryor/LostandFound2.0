@@ -9,9 +9,17 @@ import PhotoCard from './PhotoCard'
 import { uploadPhoto } from '@/actions/uploadActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
-const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
+const Form = ({
+  type,
+  submitting,
+  setSubmitting,
+  handleSubmit,
+  post,
+  setPost,
+}: FormProps) => {
   const formRef = useRef()
   const [files, setFiles] = useState([])
+  const router = useRouter()
 
   async function handleInputFiles(e: any) {
     const files = e.target.files
@@ -34,6 +42,8 @@ const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
 
   async function handleUpload(e: any) {
     e.preventDefault()
+    setSubmitting(true)
+
     if (!post.secure_url && !files.length)
       return alert('No image files are selected')
 
@@ -44,9 +54,13 @@ const Form = ({ type, submitting, handleSubmit, post, setPost }: FormProps) => {
     })
 
     const res = await uploadPhoto(formData)
-    handleSubmit(e, res)
 
     if (res?.errMsg) alert(`Error: ${res?.errMsg}`)
+    const response = await handleSubmit(e, res)
+
+    if (response.ok) {
+      router.push('/')
+    }
     setFiles([])
     formRef?.current?.reset()
   }

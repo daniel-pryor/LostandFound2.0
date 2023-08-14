@@ -81,7 +81,7 @@
 }
 
 .home__text-container {
-  @apply flex flex-col items-start justify-start gap-y-2.5 text-black-100;
+  @apply flex flex-col items-center justify-start gap-y-2.5 text-black-100;
 }
 
 .home__filters {

@@ -43,6 +43,7 @@ export interface FormProps {
   post: PostProps
   setPost: (post: PostProps) => void
   submitting: boolean
+  setSubmitting: (submitting: boolean) => void
   handleSubmit: (event: any, photoData: any) => void
 }
 

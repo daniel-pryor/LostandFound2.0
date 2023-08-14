@@ -8,7 +8,6 @@ import { Form } from '@/components'
 
 const CreatePost = () => {
   const { data: session } = useSession()
-  const router = useRouter()
   const [submitting, setSubmitting] = useState(false)
   const [post, setPost] = useState({
     type: '',
@@ -26,7 +25,6 @@ const CreatePost = () => {
     photoData: any
   ) => {
     e.preventDefault()
-    setSubmitting(true)
 
     try {
       const response = await fetch('/api/post/new', {
@@ -45,9 +43,7 @@ const CreatePost = () => {
         }),
       })
 
-      if (response.ok) {
-        router.push('/')
-      }
+      return response
     } catch (error) {
       console.log(error)
     } finally {
@@ -62,6 +58,7 @@ const CreatePost = () => {
         post={post}
         setPost={setPost}
         submitting={submitting}
+        setSubmitting={setSubmitting}
         handleSubmit={createPost}
       />
     </div>

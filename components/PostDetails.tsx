@@ -52,7 +52,7 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
                 leaveFrom='opacity-100 scale-100'
                 leaveTo='opacity-0 scale-95'
               >
-                <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white p-6 text-left shadow-xl transition-all flex flex-col gap-5'>
+                <Dialog.Panel className='relative w-full max-w-lg max-h-[90vh] overflow-y-auto transform rounded-2xl bg-white py-2 px-1 sm: text-left shadow-xl transition-all flex flex-col gap-5'>
                   <button
                     type='button'
                     onClick={closeModal}
@@ -108,11 +108,11 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
                       <p>{post.description}</p>
                     </div>
 
-                    <div
-                      onClick={handleProfileClick}
-                      className='flex items-center  cursor-pointer justify-between w-full'
-                    >
-                      <div className='flex items-center gap-2'>
+                    <div className='flex flex-wrap items-center   justify-around w-full '>
+                      <div
+                        className='flex items-center gap-2 cursor-pointer'
+                        onClick={handleProfileClick}
+                      >
                         <Image
                           src={post.creator.image}
                           alt='user_image'
@@ -124,12 +124,21 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
                       </div>
 
                       <div>
-                        {' '}
                         <p>
                           <span className='text-gray-400'>Posted:</span>{' '}
                           {newDatePosted}
                         </p>
                       </div>
+                      {post?.creator?._id !== session?.user?.id && (
+                        <div className=''>
+                          <a
+                            href={`mailto:${post.creator?.email}?subject=Lost and Found ${post.title}`}
+                            className='rounded-full border border-primary-purple bg-primary-purple py-1.5 px-5 text-white transition-all hover:bg-white hover:text-black text-center text-sm  flex items-center justify-center'
+                          >
+                            Contact User
+                          </a>
+                        </div>
+                      )}
                     </div>
                   </div>
                 </Dialog.Panel>
