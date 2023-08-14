@@ -68,11 +68,11 @@ const PostCard = ({
         handleCategoryClick={handleCategoryClick}
       />
       {session?.user?.id === post?.creator?._id && pathName === '/profile' && (
-        <div>
+        <div className='flex justify-between mt-5'>
           <p className='cursor-pointer' onClick={handleEdit}>
             Edit
           </p>
-          <p className='cursor-pointer' onClick={handleDelete}>
+          <p className='cursor-pointer text-red-400' onClick={handleDelete}>
             Delete
           </p>
         </div>

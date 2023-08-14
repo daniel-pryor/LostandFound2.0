@@ -16,7 +16,7 @@ const UserProfile = ({ params }: any) => {
       const response = await fetch(`/api/users/${params?.id}/posts`)
       const data = await response.json()
 
-      setUserPosts(data)
+      setUserPosts(data.reverse())
     }
 
     if (params?.id) fetchPosts()
