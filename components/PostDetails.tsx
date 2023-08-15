@@ -86,7 +86,6 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
                           alt='image'
                           layout='fill'
                           objectFit='cover'
-                          objectPosition='center'
                           className='mx-auto'
                         />
                       )}

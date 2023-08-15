@@ -75,12 +75,13 @@ const Form = ({
         className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
       >
         {post.secure_url ? (
-          <div>
+          <div className='w-[300px] h-[300px] bg-slate-100 rounded-sm drop-shadow-sm p-5 my-2 relative'>
             <Image
               src={post.secure_url}
               alt='image'
-              width={100}
-              height={60}
+              layout='fill'
+              objectFit='cover'
+              className='mx-auto'
               priority
             />
           </div>
@@ -114,22 +115,13 @@ const Form = ({
             required
             placeholder='Lost or found?'
           >
-            <option value='' disabled selected>
+            <option value='' disabled defaultValue='Select an option'>
               Select an option
             </option>
             <option value='Lost'>Lost</option>
             <option value='Found'>Found</option>
           </select>
         </label>
-        {/* 
-        <label className='flex flex-col'>
-          <input
-            value={post.type}
-            placeholder='item type'
-            required
-            className='border'
-          />
-        </label> */}
         <label className='text-md text-gray-900'>
           Category
           <select
@@ -138,11 +130,11 @@ const Form = ({
             required
             placeholder='Select an option'
           >
-            <option value='' disabled selected>
+            <option value='' disabled defaultValue='Select an option'>
               Select an option
             </option>
             {categories.map((item) => (
-              <option id={item} value={item}>
+              <option key={item} value={item}>
                 {item}
               </option>
             ))}

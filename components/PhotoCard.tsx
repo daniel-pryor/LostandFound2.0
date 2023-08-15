@@ -12,7 +12,6 @@ const PhotoCard = ({ url, onClick }: any) => {
           alt='image'
           layout='fill'
           objectFit='cover'
-          objectPosition='center'
           className='mx-auto'
           priority
         />

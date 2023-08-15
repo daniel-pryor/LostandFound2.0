@@ -47,7 +47,6 @@ const EditPost = () => {
     photoData: any
   ) => {
     e.preventDefault()
-    setSubmitting(true)
 
     if (!postId) return alert('Post ID not found')
 
@@ -82,6 +81,7 @@ const EditPost = () => {
         post={post}
         setPost={setPost}
         submitting={submitting}
+        setSubmitting={setSubmitting}
         handleSubmit={updatePost}
       />
     </div>
