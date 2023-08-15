@@ -9,6 +9,7 @@ import PhotoCard from './PhotoCard'
 import { uploadPhoto } from '@/actions/uploadActions'
 import { useSession } from 'next-auth/react'
 import Image from 'next/image'
+import { categories } from '@/constants'
 const Form = ({
   type,
   submitting,
@@ -66,11 +67,13 @@ const Form = ({
   }
 
   return (
-    <section className='w-full max-w-full flex-start flex-col'>
-      <h1>{type} Post</h1>
-      <p className=''>{type} your post</p>
+    <section className='   flex flex-col items-center w-[350px] lg:w-full mx-auto'>
+      <h1 className='text-4xl font-extrabold m-1'>{type} Post</h1>
       {/* <UploadFile /> */}
-      <form onSubmit={handleUpload} className='flex flex-col gap-5 m-10'>
+      <form
+        onSubmit={handleUpload}
+        className='mt-10 w-full max-w-2xl flex flex-col gap-7 glassmorphism'
+      >
         {post.secure_url ? (
           <div>
             <Image
@@ -82,12 +85,16 @@ const Form = ({
             />
           </div>
         ) : (
-          <div style={{ background: '#ddd', minHeight: 200 }}>
-            <input type='file' accept='image/*' onChange={handleInputFiles} />
+          <div className='flex flex-col items-center'>
+            <input
+              type='file'
+              accept='image/*'
+              onChange={handleInputFiles}
+              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 mb-2'
+            />
 
-            <h5 style={{ color: 'red' }}>
-              {' '}
-              (*) Only accepts files less than 1mb. Up to 3 photo files{' '}
+            <h5 className='text-gray-400'>
+              (*) Only accepts files less than 1mb{' '}
             </h5>
             {/* Preview Images */}
 
@@ -99,19 +106,51 @@ const Form = ({
             ))}
           </div>
         )}
-
-        <label>
-          <span className=''>Item type</span>
-
+        <label className='text-md text-gray-900'>
+          Lost or Found?
+          <select
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            onChange={(e) => setPost({ ...post, type: e.target.value })}
+            required
+            placeholder='Lost or found?'
+          >
+            <option value='' disabled selected>
+              Select an option
+            </option>
+            <option value='Lost'>Lost</option>
+            <option value='Found'>Found</option>
+          </select>
+        </label>
+        {/* 
+        <label className='flex flex-col'>
           <input
             value={post.type}
-            onChange={(e) => setPost({ ...post, type: e.target.value })}
             placeholder='item type'
             required
             className='border'
           />
+        </label> */}
+        <label className='text-md text-gray-900'>
+          Category
+          <select
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            onChange={(e) => setPost({ ...post, category: e.target.value })}
+            required
+            placeholder='Select an option'
+          >
+            <option value='' disabled selected>
+              Select an option
+            </option>
+            {categories.map((item) => (
+              <option id={item} value={item}>
+                {item}
+              </option>
+            ))}
+
+            <option value='Found'>Found</option>
+          </select>
         </label>
-        <label>
+        {/* <label>
           <span className=''>Item Category</span>
 
           <input
@@ -121,38 +160,41 @@ const Form = ({
             required
             className='border'
           />
-        </label>
+        </label> */}
         <label>
-          <span className=''>Item name</span>
+          <span className=''>Title</span>
 
           <input
+            type='text'
             value={post.title}
             onChange={(e) => setPost({ ...post, title: e.target.value })}
-            placeholder='item name'
+            placeholder='eg. Brown leather wallet...'
             required
-            className='border'
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
           />
         </label>
         <label>
           <span className=''>Location</span>
 
           <input
+            type='text'
             value={post.location}
             onChange={(e) => setPost({ ...post, location: e.target.value })}
-            placeholder='item name'
+            placeholder='eg. Clovelly Beach...'
             required
-            className='border'
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
           />
         </label>
         <label>
           <span className=''>Date</span>
 
           <input
+            type='date'
             value={post.date}
             onChange={(e) => setPost({ ...post, date: e.target.value })}
             placeholder='item name'
             required
-            className='border'
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
           />
         </label>
         <label>
@@ -161,19 +203,19 @@ const Form = ({
           <textarea
             value={post.description}
             onChange={(e) => setPost({ ...post, description: e.target.value })}
-            placeholder='Describe the item you found'
+            placeholder='Describe the item and give more information about where you lost/found it...'
             required
-            className='border'
+            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 h-[100px]'
           />
         </label>
-        <div className='flex-end mx-3 mb-5 gap-4'>
+        <div className='flex justify-between items-center mx-3 mb-5 gap-4'>
           <Link href='/' className='text-gray-500 text-sm'>
             Cancel
           </Link>
           <button
             type='submit'
             disabled={submitting}
-            className='px-5 py-1.5 text-sm bg-primary-purple rounded-full text-white'
+            className='px-5 py-1.5 text-sm bg-primary-purple rounded-full text-white w-[100px]'
           >
             {submitting ? `${type}...` : type}
           </button>

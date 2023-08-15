@@ -30,16 +30,20 @@ const Profile = ({
       </div>
 
       <div className='flex flex-row flex-wrap w-full py-5 justify-center gap-10 mt-5'>
-        {data.map((post) => (
-          <PostCard
-            key={post._id}
-            handleCategoryClick={() => {}}
-            post={post}
-            url={post?.secure_url}
-            handleDelete={() => handleDelete && handleDelete(post)}
-            handleEdit={() => handleEdit && handleEdit(post)}
-          />
-        ))}
+        {data.length ? (
+          data.map((post) => (
+            <PostCard
+              key={post._id}
+              handleCategoryClick={() => {}}
+              post={post}
+              url={post?.secure_url}
+              handleDelete={() => handleDelete && handleDelete(post)}
+              handleEdit={() => handleEdit && handleEdit(post)}
+            />
+          ))
+        ) : (
+          <h2>You have no posts</h2>
+        )}
       </div>
     </section>
   )
