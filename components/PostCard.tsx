@@ -19,7 +19,7 @@ const PostCard = ({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='flex flex-col p-5 bg-slate-50 rounded-sm drop-shadow-lg'>
+    <div className='flex flex-col p-5 bg-slate-50 rounded-sm drop-shadow-lg '>
       <div className='flex justify-between'>
         <h2
           className={`${
@@ -38,6 +38,7 @@ const PostCard = ({
             objectFit='cover'
             objectPosition='center'
             className='mx-auto'
+            priority
           />
         )}
       </div>

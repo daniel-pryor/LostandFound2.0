@@ -52,16 +52,14 @@ const CreatePost = () => {
   }
 
   return (
-    <div className=''>
-      <Form
-        type='Create'
-        post={post}
-        setPost={setPost}
-        submitting={submitting}
-        setSubmitting={setSubmitting}
-        handleSubmit={createPost}
-      />
-    </div>
+    <Form
+      type='Create'
+      post={post}
+      setPost={setPost}
+      submitting={submitting}
+      setSubmitting={setSubmitting}
+      handleSubmit={createPost}
+    />
   )
 }
 
