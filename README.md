@@ -46,3 +46,11 @@ While I've done my best to ensure a smooth experience, bugs are a natural part o
 I've used GitHub for version control, which has helped me track changes, collaborate with myself (and others in the future), and maintain the project's history. The development process has been organized using GitHub's features, providing a clear overview of tasks and progress.
 
 Thank you for exploring the Lost and Found app! I hope it helps you reconnect with your lost items or facilitate the return of found items. If you have any questions or suggestions, feel free to reach out.
+<img width="1439" alt="L F-homepage" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/cc131e83-4b2b-4649-8b9e-34a13dd32b32">
+
+<img width="1423" alt="all-posts" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/8ff0fbd8-6612-4942-aceb-faae9a3990ef">
+<img width="323" alt="create-post" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/b7327d0d-5f64-4961-9e59-7d95d43de552">
+<img width="323" alt="create-posst-2" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/1fb928e6-f361-4128-8bf2-5c9f575f7917">
+<img width="322" alt="new-post" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/a23e65ae-2ddb-4b84-8c22-b1a09c173954">
+<img width="321" alt="more-details" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/be156866-d087-4473-89de-afcbd304d0cf">
+
