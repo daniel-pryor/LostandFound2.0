@@ -14,6 +14,7 @@ const MyProfile = () => {
   const [posts, setPosts] = useState([])
 
   const handleEdit = (post: any) => {
+    console.log(post)
     router.push(`/update-post?id=${post._id}`)
   }
 

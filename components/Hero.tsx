@@ -12,10 +12,10 @@ const Hero = () => {
   return (
     <div className='hero'>
       <div className='flex-1 pt-36 padding-x'>
-        <h1 className='hero__title text-primary-purple'>
+        <h1 className='hero-title text-primary-purple'>
           Welcome to Lost & Found
         </h1>
-        <p className='hero__subtitle'>
+        <p className='hero-subtitle'>
           Where Lost Belongings Find Their Way Home.
         </p>
 
@@ -25,8 +25,8 @@ const Hero = () => {
           handleClick={handleScroll}
         />
       </div>
-      <div className='hero__image-container'>
-        <div className='hero__image'>
+      <div className='hero-image-container'>
+        <div className='hero-image'>
           <Image src='/hero.png' alt='hero' fill className='object-contain' />
         </div>
       </div>

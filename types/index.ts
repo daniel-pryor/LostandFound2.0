@@ -1,5 +1,3 @@
-import { MouseEventHandler } from 'react'
-
 export interface CustomButtonProps {
   title: string
   containerStyles?: string
@@ -8,34 +6,6 @@ export interface CustomButtonProps {
   textStyles?: string
   rightIcon?: string
   isDisabled?: boolean
-}
-
-export interface SearchCategoryProps {
-  category: string
-  setCategory: (category: string) => void
-}
-
-export interface FilterProps {
-  manufacturer: string
-  year: number
-  fuel: string
-  limit: number
-  model: string
-}
-
-export interface OptionProps {
-  title: string
-  value: string
-}
-
-export interface CustomFilterProps {
-  title: string
-  options: OptionProps[]
-}
-
-export interface ShowMoreProps {
-  pageNumber: number
-  isNext: boolean
 }
 
 export interface FormProps {

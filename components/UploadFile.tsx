@@ -2,7 +2,6 @@
 
 import { useRef, useState } from 'react'
 import PhotoCard from './PhotoCard'
-import ButtonSubmit from './ButtonSubmit'
 import { revalidate, uploadPhoto } from '@/actions/uploadActions'
 
 const UploadFile = () => {
@@ -51,7 +50,7 @@ const UploadFile = () => {
 
     // delay about 2s to update cloudinary database
     // the revalidatePath => call getAllPhotos()
-    // revalidate('/')
+    revalidate('/')
   }
 
   return (
@@ -73,8 +72,6 @@ const UploadFile = () => {
           />
         ))}
       </div>
-
-      <ButtonSubmit value={'Upload to Cloudinary'} />
     </form>
   )
 }
