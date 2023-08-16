@@ -65,11 +65,17 @@ const Feed = () => {
         />
       </form>
 
-      <PostList
-        data={allPosts}
-        handleCategoryClick={setSearchQuery}
-        searchQuery={searchQuery}
-      />
+      {allPosts ? (
+        <PostList
+          data={allPosts}
+          handleCategoryClick={setSearchQuery}
+          searchQuery={searchQuery}
+        />
+      ) : (
+        <div>
+          <p>Loading posts...</p>
+        </div>
+      )}
     </section>
   )
 }
