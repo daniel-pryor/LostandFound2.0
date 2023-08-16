@@ -1,6 +1,6 @@
 # Lost and Found App
 
-Welcome to the Lost and Found app! This project is designed to help users find lost items or return found items to their owners. The app aims to create a community-driven platform where users can post about lost or found items, connect with others, and facilitate the return of belongings. Note: This is a remake of a group project from my time at Dev Academy
+Welcome to the Lost and Found app! This project is designed to help users find lost items or return found items to their owners. The app aims to create a community-driven platform where users can post about lost or found items, connect with others, and facilitate the return of belongings.
 
 ## User Stories
 
@@ -19,10 +19,10 @@ Welcome to the Lost and Found app! This project is designed to help users find l
 I built the Lost and Found app using the following technologies:
 
 - **Next.js**: A React framework that enables server-side rendering and offers an excellent development experience.
+- **TypeScript**: A superset of JavaScript that enhances code quality through static type checking.
 - **MongoDB**: A NoSQL database used to store user data, posts, and relevant information.
 - **Tailwind CSS**: A utility-first CSS framework that speeds up development with pre-styled components.
 - **Vercel**: A platform for deploying web applications quickly and efficiently.
-- **TypeScript**: A superset of JavaScript that enhances code quality through static type checking.
 - **Cloudinary**: A cloud-based service for storing and serving images efficiently.
 - **GitHub**: Version control and collaboration platform to manage the project's source code.
 
@@ -34,14 +34,16 @@ I built the Lost and Found app using the following technologies:
 - Detailed view for each post, providing comprehensive item information.
 - Initiate email contact with other users regarding specific items.
 - Explore all posts by a particular user.
-- Search functionality based on name, title, type, or description.
+- Search functionality based on title, location, type, or description.
 - Category filters to sort posts based on specific categories.
 
 ## Known Bugs
 
 While I've done my best to ensure a smooth experience, bugs are a natural part of software development. I'm actively working to identify and address any issues. If you encounter problems while using the app, please let me know so I can make improvements. Your feedback is invaluable.
 
-<img width="1437" alt="Screen Shot 2023-08-16 at 18 47 44 PM" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/44320512-9d56-4119-b5b0-4f58aa8ae8ec">
+- Failure to load posts on first render(refresh or sign in required to fetch data)
+- Sign in not always recognised
+- Slow loading on mobile
 
 ## Project Management
 
