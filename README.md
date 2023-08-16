@@ -41,6 +41,8 @@ I built the Lost and Found app using the following technologies:
 
 While I've done my best to ensure a smooth experience, bugs are a natural part of software development. I'm actively working to identify and address any issues. If you encounter problems while using the app, please let me know so I can make improvements. Your feedback is invaluable.
 
+<img width="1437" alt="Screen Shot 2023-08-16 at 18 47 44 PM" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/44320512-9d56-4119-b5b0-4f58aa8ae8ec">
+
 ## Project Management
 
 I've used GitHub for version control, which has helped me track changes, collaborate with myself (and others in the future), and maintain the project's history. The development process has been organized using GitHub's features, providing a clear overview of tasks and progress.
