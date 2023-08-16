@@ -15,8 +15,6 @@ const PostDetails = ({ isOpen, closeModal, post, url }: PostDetailsProps) => {
   const { data: session } = useSession()
 
   const handleProfileClick = () => {
-    console.log(post)
-
     if (post?.creator?._id === session?.user?.id) return router.push('/profile')
 
     router.push(
