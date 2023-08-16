@@ -4,7 +4,7 @@ import { PostCardProps } from '@/types'
 import { useState } from 'react'
 import Image from 'next/image'
 import { useSession } from 'next-auth/react'
-import { usePathname, useRouter } from 'next/navigation'
+import { usePathname } from 'next/navigation'
 import { CustomButton, PostDetails } from '.'
 
 const PostCard = ({
@@ -19,7 +19,7 @@ const PostCard = ({
   const [isOpen, setIsOpen] = useState(false)
 
   return (
-    <div className='flex flex-col p-5 bg-slate-50 rounded-sm drop-shadow-lg '>
+    <div className='flex flex-col p-5 bg-slate-50 rounded-sm drop-shadow-lg max-w-[340px]'>
       <div className='flex justify-between'>
         <h2
           className={`${

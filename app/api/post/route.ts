@@ -1,7 +1,7 @@
 import { connectToDB } from '@/utils/database'
 import Post from '@/models/post'
 
-export const GET = async (req: any) => {
+export const GET = async (req: Request) => {
   try {
     await connectToDB()
 

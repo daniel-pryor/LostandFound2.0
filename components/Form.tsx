@@ -7,7 +7,6 @@ import { useRouter } from 'next/navigation'
 import { useRef, useState } from 'react'
 import PhotoCard from './PhotoCard'
 import { uploadPhoto } from '@/actions/uploadActions'
-import { useSession } from 'next-auth/react'
 import Image from 'next/image'
 import { categories } from '@/constants'
 const Form = ({
@@ -59,7 +58,7 @@ const Form = ({
     if (res?.errMsg) alert(`Error: ${res?.errMsg}`)
     const response = await handleSubmit(e, res)
 
-    if (response.ok) {
+    if (response?.ok) {
       router.push('/')
     }
     setFiles([])
@@ -91,7 +90,7 @@ const Form = ({
               type='file'
               accept='image/*'
               onChange={handleInputFiles}
-              className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 mb-2'
+              className='form-input'
             />
 
             <h5 className='text-gray-400'>
@@ -110,12 +109,12 @@ const Form = ({
         <label className='text-md text-gray-900'>
           Lost or Found?
           <select
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className='form-input'
             onChange={(e) => setPost({ ...post, type: e.target.value })}
             required
             placeholder='Lost or found?'
           >
-            <option value='' disabled defaultValue='Select an option'>
+            <option value='' disabled defaultValue='Select an option' selected>
               Select an option
             </option>
             <option value='Lost'>Lost</option>
@@ -125,12 +124,12 @@ const Form = ({
         <label className='text-md text-gray-900'>
           Category
           <select
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 dark:focus:ring-blue-500 dark:focus:border-blue-500'
+            className='form-input'
             onChange={(e) => setPost({ ...post, category: e.target.value })}
             required
             placeholder='Select an option'
           >
-            <option value='' disabled defaultValue='Select an option'>
+            <option value='' disabled defaultValue='Select an option' selected>
               Select an option
             </option>
             {categories.map((item) => (
@@ -142,17 +141,6 @@ const Form = ({
             <option value='Found'>Found</option>
           </select>
         </label>
-        {/* <label>
-          <span className=''>Item Category</span>
-
-          <input
-            value={post.category}
-            onChange={(e) => setPost({ ...post, category: e.target.value })}
-            placeholder='item category'
-            required
-            className='border'
-          />
-        </label> */}
         <label>
           <span className=''>Title</span>
 
@@ -162,7 +150,7 @@ const Form = ({
             onChange={(e) => setPost({ ...post, title: e.target.value })}
             placeholder='eg. Brown leather wallet...'
             required
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
+            className='form-input'
           />
         </label>
         <label>
@@ -174,7 +162,7 @@ const Form = ({
             onChange={(e) => setPost({ ...post, location: e.target.value })}
             placeholder='eg. Clovelly Beach...'
             required
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
+            className='form-input'
           />
         </label>
         <label>
@@ -186,7 +174,7 @@ const Form = ({
             onChange={(e) => setPost({ ...post, date: e.target.value })}
             placeholder='item name'
             required
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2'
+            className='form-input'
           />
         </label>
         <label>
@@ -197,7 +185,7 @@ const Form = ({
             onChange={(e) => setPost({ ...post, description: e.target.value })}
             placeholder='Describe the item and give more information about where you lost/found it...'
             required
-            className='bg-gray-50 border border-gray-300 text-gray-900 text-sm rounded-lg focus:ring-blue-500 focus:border-blue-500 mt-2  w-full p-2 h-[100px]'
+            className='form-input'
           />
         </label>
         <div className='flex justify-between items-center mx-3 mb-5 gap-4'>

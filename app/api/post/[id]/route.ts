@@ -1,7 +1,10 @@
 import { connectToDB } from '@/utils/database'
 import Post from '@/models/post'
 
-export const GET = async (req: any, { params }: any) => {
+export const GET = async (
+  req: Request,
+  { params }: { params: { id: string } }
+) => {
   try {
     await connectToDB()
 
@@ -20,7 +23,10 @@ export const GET = async (req: any, { params }: any) => {
   }
 }
 
-export const PATCH = async (req: any, { params }: any) => {
+export const PATCH = async (
+  req: Request,
+  { params }: { params: { id: string } }
+) => {
   const { type, title, location, date, description, datePosted, category } =
     await req.json()
 
@@ -48,7 +54,10 @@ export const PATCH = async (req: any, { params }: any) => {
   }
 }
 
-export const DELETE = async (req: any, { params }: any) => {
+export const DELETE = async (
+  req: Request,
+  { params }: { params: { id: string } }
+) => {
   try {
     await connectToDB()
 

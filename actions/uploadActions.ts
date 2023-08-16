@@ -3,8 +3,7 @@
 import path from 'path'
 import fs from 'fs/promises'
 import { v4 as uuidv4 } from 'uuid'
-import os, { tmpdir } from 'os'
-
+import os from 'os'
 import { v2 as cloudinary } from 'cloudinary'
 import { revalidatePath } from 'next/cache'
 
@@ -17,8 +16,8 @@ cloudinary.config({
 async function savePhotosToLocal(formData: any) {
   const files = formData.getAll('files')
 
-  const multipleBuffersPromise = files.map((file) =>
-    file.arrayBuffer().then((data) => {
+  const multipleBuffersPromise = files.map((file: any) =>
+    file.arrayBuffer().then((data: any) => {
       const buffer = Buffer.from(data)
       const name = uuidv4()
       const ext = file.type.split('/')[1]
@@ -37,7 +36,7 @@ async function savePhotosToLocal(formData: any) {
 }
 
 async function uploadPhotosToCloudinary(newFiles: any) {
-  const multiplePhotosPromise = newFiles.map((file) =>
+  const multiplePhotosPromise = newFiles.map((file: any) =>
     cloudinary.uploader.upload(file.filepath, {
       folder: 'lostandfound_upload',
     })
@@ -58,6 +57,7 @@ export async function uploadPhoto(formData: any) {
     const photo = await uploadPhotosToCloudinary(newFiles)
     // Delete photo files in temp folder after successful upload
     newFiles.map((file) => fs.unlink(file.filepath))
+    revalidatePath('/')
 
     return photo
   } catch (error) {
@@ -72,7 +72,7 @@ export async function deletePhoto(public_id: any) {
     revalidatePath('/')
     return { msg: 'Delete Success!' }
   } catch (error) {
-    return { errMsg: error.message }
+    console.log(error)
   }
 }
 

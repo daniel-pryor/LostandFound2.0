@@ -67,6 +67,7 @@ const EditPost = () => {
       if (response.ok) {
         router.push('/')
       }
+      return response
     } catch (error) {
       console.log(error)
     } finally {

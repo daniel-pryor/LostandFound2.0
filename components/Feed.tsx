@@ -61,7 +61,7 @@ const Feed = () => {
           placeholder='Filter by type, name, location, or description'
           value={searchQuery}
           onChange={(e) => setSearchQuery(e.target.value)}
-          className='search_input peer'
+          className='search-input peer'
         />
       </form>
 

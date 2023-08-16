@@ -1,7 +1,7 @@
 import { connectToDB } from '@/utils/database'
 import Post from '@/models/post'
 
-export const POST = async (req: any) => {
+export const POST = async (req: Request) => {
   const {
     userId,
     type,
