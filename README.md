@@ -50,7 +50,10 @@ Thank you for exploring the Lost and Found app! I hope it helps you reconnect wi
 
 <img width="1423" alt="all-posts" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/8ff0fbd8-6612-4942-aceb-faae9a3990ef">
 <img width="323" alt="create-post" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/b7327d0d-5f64-4961-9e59-7d95d43de552">
-<img width="323" alt="create-posst-2" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/1fb928e6-f361-4128-8bf2-5c9f575f7917">
+
 <img width="322" alt="new-post" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/a23e65ae-2ddb-4b84-8c22-b1a09c173954">
-<img width="321" alt="more-details" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/be156866-d087-4473-89de-afcbd304d0cf">
+<img width="322" alt="more-detailss" src="https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/11d0c02d-3a16-40af-8f9f-8cf7fc9189b6">
+
+![email-link](https://github.com/daniel-pryor/lostandfound2.0/assets/75132443/221183c8-0cb9-4ad8-817a-389309ef63af)
+
 
