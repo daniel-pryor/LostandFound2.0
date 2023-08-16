@@ -1,6 +1,6 @@
 # Lost and Found App
 
-Welcome to the Lost and Found app! This project is designed to help users find lost items or return found items to their owners. The app aims to create a community-driven platform where users can post about lost or found items, connect with others, and facilitate the return of belongings.
+Welcome to the Lost and Found app! This project is designed to help users find lost items or return found items to their owners. The app aims to create a community-driven platform where users can post about lost or found items, connect with others, and facilitate the return of belongings. Note: This is a remake of a group project from my time at Dev Academy
 
 ## User Stories
 
