@@ -14,8 +14,12 @@ export const GET = async (
       status: 200,
     })
   } catch (error) {
-    return new Response('Failed to fetch all posts', {
-      status: 500,
-    })
+    console.error('Error fetching posts:', error)
+    return new Response(
+      JSON.stringify({ error: 'Failed to fetch all posts' }),
+      {
+        status: 500,
+      }
+    )
   }
 }
